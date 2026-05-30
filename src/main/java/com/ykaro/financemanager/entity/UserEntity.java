@@ -1,6 +1,7 @@
 package com.ykaro.financemanager.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -18,15 +19,17 @@ public class UserEntity {
     private Long id;
 
     @Column(nullable = false)
+    @Size(min = 3, max = 255)
     private String name;
 
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
+    @Size(min = 6)
     private String password;
 
-    @Column(nullable = false)
-    private LocalDateTime created_at;
+    @Column(nullable = false, name = "created_at")
+    private LocalDateTime createdAt;
 
 }
