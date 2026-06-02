@@ -1,10 +1,12 @@
 package com.ykaro.financemanager.controller;
 
 import com.ykaro.financemanager.dto.CreateUserRequestDTO;
+import com.ykaro.financemanager.dto.UpdateUserRequestDTO;
 import com.ykaro.financemanager.dto.UserResponseDTO;
 import com.ykaro.financemanager.entity.UserEntity;
 import com.ykaro.financemanager.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,5 +30,16 @@ public class UserController {
     @GetMapping("/{id}")
     public UserResponseDTO getUserById(@PathVariable Long id) {
         return userService.getUserById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUserById(@PathVariable Long id) {
+        userService.deleteUserById(id);
+        return ResponseEntity.ok("Usuário removido com sucesso!");
+    }
+
+    @PutMapping("/{id}")
+    public UserResponseDTO updateUserById(@RequestBody UpdateUserRequestDTO dto, @PathVariable Long id) {
+        return userService.updateUserById(dto,id);
     }
 }
