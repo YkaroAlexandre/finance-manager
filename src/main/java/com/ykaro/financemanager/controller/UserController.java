@@ -5,6 +5,7 @@ import com.ykaro.financemanager.dto.UpdateUserRequestDTO;
 import com.ykaro.financemanager.dto.UserResponseDTO;
 import com.ykaro.financemanager.entity.UserEntity;
 import com.ykaro.financemanager.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public UserResponseDTO createUser(@RequestBody CreateUserRequestDTO dto){
+    public UserResponseDTO createUser(@Valid @RequestBody CreateUserRequestDTO dto){
         return userService.createUser(dto);
     }
 
@@ -39,7 +40,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public UserResponseDTO updateUserById(@RequestBody UpdateUserRequestDTO dto, @PathVariable Long id) {
+    public UserResponseDTO updateUserById(@Valid @RequestBody UpdateUserRequestDTO dto, @PathVariable Long id) {
         return userService.updateUserById(dto,id);
     }
 }
