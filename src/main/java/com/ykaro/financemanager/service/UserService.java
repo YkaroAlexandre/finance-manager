@@ -70,8 +70,6 @@ public class UserService {
         userRepository.delete(user);
     }
 
-
-    // Precisa ajustar algumas coisas
     public UserResponseDTO updateUserById(UpdateUserRequestDTO dto, Long id) {
         UserEntity user = userRepository.findById(id)
                 .orElseThrow();
