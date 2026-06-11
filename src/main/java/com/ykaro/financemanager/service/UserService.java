@@ -36,8 +36,19 @@ public class UserService {
                 .build();
     }
 
-    public List<UserEntity> getAllUsers() {
-        return userRepository.findAll();
+    public List<UserResponseDTO> getAllUsers() {
+        List<UserEntity> savedUsers = userRepository.findAll();
+        List<UserResponseDTO> users = new java.util.ArrayList<>();
+        for (UserEntity user : savedUsers) {
+            UserResponseDTO userToSave =UserResponseDTO.builder()
+                    .id(user.getId())
+                    .name(user.getName())
+                    .email(user.getEmail())
+                    .createdAt(user.getCreatedAt())
+                    .build();
+            users.add(userToSave);
+        }
+        return users;
     }
 
     public UserResponseDTO getUserById(Long id) {
