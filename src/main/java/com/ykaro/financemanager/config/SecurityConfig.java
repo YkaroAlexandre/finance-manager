@@ -15,4 +15,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth.anyRequest().permitAll() );
         return http.build();
     }
+
+    // Precisa adicionar o Bcripty.
 }
