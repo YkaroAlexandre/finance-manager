@@ -4,6 +4,7 @@ import com.ykaro.financemanager.dto.CreateUserRequestDTO;
 import com.ykaro.financemanager.dto.UpdateUserRequestDTO;
 import com.ykaro.financemanager.dto.UserResponseDTO;
 import com.ykaro.financemanager.entity.UserEntity;
+import com.ykaro.financemanager.exception.EmailAlreadyExistsException;
 import com.ykaro.financemanager.exception.ResourceNotFoundException;
 import com.ykaro.financemanager.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,12 +30,17 @@ public class UserService {
 
 
     public UserResponseDTO createUser(CreateUserRequestDTO dto) {
+        String email = dto.getEmail().strip().toLowerCase();
+        if (userRepository.existsByEmail(email)){
+            throw new EmailAlreadyExistsException("Email já cadastrado");
+        }
         UserEntity user = UserEntity.builder()
                 .name(dto.getName())
-                .email(dto.getEmail().strip().toLowerCase())
+                .email(email)
                 .password(dto.getPassword())
                 .createdAt(LocalDateTime.now())
                 .build();
+
 
         UserEntity savedUser = userRepository.save(user);
 
