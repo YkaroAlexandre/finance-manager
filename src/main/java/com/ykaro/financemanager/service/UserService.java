@@ -8,6 +8,7 @@ import com.ykaro.financemanager.exception.EmailAlreadyExistsException;
 import com.ykaro.financemanager.exception.ResourceNotFoundException;
 import com.ykaro.financemanager.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -18,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     private UserResponseDTO toResponseDTO(UserEntity user) {
         return UserResponseDTO.builder()
@@ -28,7 +30,6 @@ public class UserService {
                 .build();
     }
 
-
     public UserResponseDTO createUser(CreateUserRequestDTO dto) {
         String email = dto.getEmail().strip().toLowerCase();
         if (userRepository.existsByEmail(email)){
@@ -37,7 +38,7 @@ public class UserService {
         UserEntity user = UserEntity.builder()
                 .name(dto.getName())
                 .email(email)
-                .password(dto.getPassword())
+                .password(passwordEncoder.encode(dto.getPassword()))
                 .createdAt(LocalDateTime.now())
                 .build();
 
@@ -78,7 +79,7 @@ public class UserService {
             user.setName(dto.getName());
         }
         if (dto.getPassword() != null && !dto.getPassword().isBlank()){
-            user.setPassword(dto.getPassword());
+            user.setPassword(passwordEncoder.encode(dto.getPassword()));
         }
         UserEntity savedUser = userRepository.save(user);
 
