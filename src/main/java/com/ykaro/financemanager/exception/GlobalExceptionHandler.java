@@ -35,4 +35,14 @@ public class GlobalExceptionHandler{
                         .build());
     }
 
+    public ResponseEntity<ErrorResponseDTO> handleInvalidCredentials(InvalidCredentialsException ex){
+        return ResponseEntity
+                .status(HttpStatus.UNAUTHORIZED)
+                .body(ErrorResponseDTO.builder()
+                        .message(ex.getMessage())
+                        .status(HttpStatus.UNAUTHORIZED.value())
+                        .timestamp(LocalDateTime.now())
+                        .build());
+    }
+
 }
