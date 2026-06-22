@@ -12,6 +12,14 @@ API REST para gerenciamento financeiro pessoal, desenvolvida com Spring Boot e J
 
 ## Endpoints
 
+**Autenticação**
+
+| Método | Rota          | Descrição  |
+|--------|---------------|------------|
+| POST   | `/auth/login` | Login      |
+
+**Usuários**
+
 | Método | Rota          | Descrição              |
 |--------|---------------|------------------------|
 | POST   | `/users`      | Criar usuário          |
