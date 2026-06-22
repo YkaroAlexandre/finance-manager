@@ -35,6 +35,7 @@ public class GlobalExceptionHandler{
                         .build());
     }
 
+    @ExceptionHandler(InvalidCredentialsException.class)
     public ResponseEntity<ErrorResponseDTO> handleInvalidCredentials(InvalidCredentialsException ex){
         return ResponseEntity
                 .status(HttpStatus.UNAUTHORIZED)
