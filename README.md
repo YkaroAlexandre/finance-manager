@@ -32,6 +32,15 @@ API REST para gerenciamento financeiro pessoal, desenvolvida com Spring Boot e J
 
 **Pré-requisitos:** Java 21+, PostgreSQL na porta `5433` com o banco `finance_manager` criado.
 
+O arquivo `application-local.properties` deve conter as credenciais do banco e a chave secreta do JWT:
+
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5433/finance_manager
+spring.datasource.username=...
+spring.datasource.password=...
+jwt.secret-key=...
+```
+
 ```bash
 ./mvnw spring-boot:run
 ```
