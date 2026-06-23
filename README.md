@@ -20,13 +20,13 @@ API REST para gerenciamento financeiro pessoal, desenvolvida com Spring Boot e J
 
 **Usuários**
 
-| Método | Rota          | Descrição              |
-|--------|---------------|------------------------|
-| POST   | `/users`      | Criar usuário          |
-| GET    | `/users`      | Listar usuários        |
-| GET    | `/users/{id}` | Buscar usuário por ID  |
-| PUT    | `/users/{id}` | Atualizar nome/senha   |
-| DELETE | `/users/{id}` | Remover usuário        |
+| Método | Rota          | Descrição             |
+|--------|---------------|-----------------------|
+| POST   | `/users`      | Criar usuário         |
+| GET    | `/users`      | Listar usuários       |
+| GET    | `/users/{id}` | Buscar usuário por ID |
+| PUT    | `/users/{id}` | Atualizar email/senha |
+| DELETE | `/users/{id}` | Remover usuário       |
 
 ## Como executar
 
