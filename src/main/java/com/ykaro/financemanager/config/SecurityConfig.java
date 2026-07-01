@@ -10,15 +10,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    // Usado para liberar o acesso a todas as rotas
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll() );
+                .authorizeHttpRequests(auth -> auth.requestMatchers("/auth/login").permitAll().anyRequest().authenticated() );
         return http.build();
     }
 
-    // Usado para criptografar a senha
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
