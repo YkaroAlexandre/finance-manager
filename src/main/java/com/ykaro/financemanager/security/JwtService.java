@@ -1,6 +1,5 @@
 package com.ykaro.financemanager.security;
 
-import com.ykaro.financemanager.exception.InvalidCredentialsException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -52,7 +51,7 @@ public class JwtService {
             return true;
         }
         catch (Exception e){
-            throw new InvalidCredentialsException("Credenciais Inválidas");
+            return false;
         }
     }
 }

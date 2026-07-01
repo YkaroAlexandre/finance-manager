@@ -5,6 +5,7 @@ import com.ykaro.financemanager.dto.LoginResponseDTO;
 import com.ykaro.financemanager.entity.UserEntity;
 import com.ykaro.financemanager.exception.InvalidCredentialsException;
 import com.ykaro.financemanager.repository.UserRepository;
+import com.ykaro.financemanager.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 public class AuthService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtService;
 
     public LoginResponseDTO login(LoginRequestDTO dto) {
         String email = dto.getEmail().strip().toLowerCase();
@@ -22,7 +24,7 @@ public class AuthService {
             throw new InvalidCredentialsException("Email ou senha incorretos");
         }
         return LoginResponseDTO.builder()
-                .message("Login Realizado com sucesso!")
+                .token(jwtService.generateToken(email))
                 .build();
     }
 }
