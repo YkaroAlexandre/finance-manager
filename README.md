@@ -16,7 +16,7 @@ API REST para gerenciamento financeiro pessoal, desenvolvida com Spring Boot e J
 
 | Método | Rota          | Descrição  |
 |--------|---------------|------------|
-| POST   | `/auth/login` | Login      |
+| POST   | `/auth/login` | Login — retorna JWT token |
 
 **Usuários**
 
@@ -25,7 +25,7 @@ API REST para gerenciamento financeiro pessoal, desenvolvida com Spring Boot e J
 | POST   | `/users`      | Criar usuário         |
 | GET    | `/users`      | Listar usuários       |
 | GET    | `/users/{id}` | Buscar usuário por ID |
-| PUT    | `/users/{id}` | Atualizar email/senha |
+| PUT    | `/users/{id}` | Atualizar nome/senha  |
 | DELETE | `/users/{id}` | Remover usuário       |
 
 ## Como executar
